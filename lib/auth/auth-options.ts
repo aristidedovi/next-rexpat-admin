@@ -39,6 +39,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
+
         return {
           id: user.id,
           email: user.email,
@@ -50,15 +51,18 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
+      //console.log("Rôle de l'utilisateur dans JWT:", user.role);  // Log pour vérifier que le rôle est bien transmis
+
       if (user) {
         return {
           ...token,
-          role: token.role,
+          role: user.role,
         };
       }
       return token;
     },
     async session({ session, token }) {
+      console.log("Token dans session:", token); // Loguer le token pour vérifier
       return {
         ...session,
         user: {

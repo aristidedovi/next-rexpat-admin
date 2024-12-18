@@ -24,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,15 +55,31 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
+      <div className="items-start justify-between sm:flex">
+        <div>
+          <Input
+            placeholder="Filter emails..."
+            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("email")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          {/* <h4 className="text-gray-800 text-xl font-semibold">Team members</h4>
+          <p className="mt-2 text-gray-600 text-base sm:text-sm">
+            Give your team members access to manage the system.
+          </p> */}
+        </div>
+        <Link
+          href="/dashboard/users/add-user"
+          className="px-5 py-3 text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg"
+        >
+          Nouveau utilisateur
+        </Link>
+      </div>
       <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        <div></div>
+        <div></div>
       </div>
       <div className="rounded-md border">
         <Table>

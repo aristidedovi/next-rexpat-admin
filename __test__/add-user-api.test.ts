@@ -1,0 +1,108 @@
+// //import handler from "@/app/api/users/add/route";
+// import handler from "@/pages/api/users/add";
+// import { createMocks } from "node-mocks-http";
+
+import { Context } from "@/lib/context"
+
+// describe("POST /api/users/add", () => {
+//   it("retourne une erreur si l'utilisateur n'est pas admin", async () => {
+//     const { req, res } = createMocks({
+//       method: "POST",
+//       body: { name:"test user", email: "testuser@test.com", password:"testUser123@", role:"USER" },
+//     });
+
+//     await handler(req, res);
+
+//     expect(res._getStatusCode()).toBe(401);
+//     expect(JSON.parse(res._getData())).toEqual({
+//       message: "Non autorisé",
+//     });
+//   });
+
+// //   it("crée un utilisateur si l'utilisateur est admin", async () => {
+// //     const { req, res } = createMocks({
+// //       method: "POST",
+// //       headers: { authorization: "Bearer token" }, // Simuler un token
+// //       body: { email: "newuser@test.com" },
+// //     });
+
+// //     await handler(req, res);
+
+// //     expect(res._getStatusCode()).toBe(201);
+// //     expect(JSON.parse(res._getData())).toEqual({
+// //       message: "Utilisateur créé avec succès",
+// //     });
+// //   });
+// });
+
+//import { Context } from './context'
+
+//import { createUser, updateUsername } from '../functions-without-context'
+import { prismaMock } from "@/lib/singleton"
+import { createUser, updateUsername } from "@/services/userService"
+import {Role } from "@prisma/client"
+
+test('should create new user ', async () => {
+  const role: Role = "USER"
+  const user = {
+    id: "fef",
+    name: 'Rich',
+    email: 'hello@prisma.io',
+    password: "test123@",
+    role: "USER" as Role,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }
+
+  prismaMock.user.create.mockResolvedValue(user)
+
+  await expect(createUser(user)).resolves.toEqual({
+    id: "fef",
+    name: 'Rich',
+    email: 'hello@prisma.io',
+    role: "USER" as Role,
+  })
+})
+
+test('should update a users name ', async () => {
+  const user = {
+    id: "fef",
+    name: 'Rich Haines',
+    email: 'hello@prisma.io',
+    password: "test123@",
+    role: "USER" as Role,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }
+
+  prismaMock.user.update.mockResolvedValue(user)
+
+  await expect(updateUsername(user)).resolves.toEqual({
+    id: 1,
+    name: 'Rich Haines',
+    email: 'hello@prisma.io',
+    acceptTermsAndConditions: true,
+  })
+})
+
+// test('should fail if user does not accept terms', async () => {
+//   const user = {
+//     id: "fef",
+//     name: 'Rich Haines',
+//     email: 'hello@prisma.io',
+//     password: "test123@",
+//     role: "USER" as Role,
+//     createdAt: new Date(),
+//     updatedAt: new Date(),
+//   }
+
+//   prismaMock.user.create.mockImplementation(user)
+
+//   await expect(createUser(user)).resolves.toEqual(
+//     new Error('User must accept terms!')
+//   )
+// })
+
+
+
+

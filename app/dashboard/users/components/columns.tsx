@@ -4,6 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -31,6 +33,21 @@ export const columns: ColumnDef<User>[] = [
     header: "Created At",
     cell: ({ row }) => {
       return format(new Date(row.getValue("createdAt")), "PPP");
+    },
+  },
+  {
+    accessorKey: "action",
+    header: "Action",
+    cell: ({ row }) => {
+      return (
+        <Button
+          variant="link"
+          size="sm"
+          onClick={(e) => console.log(row.getValue("email"))}
+        >
+          <Trash2 className="h-5 w-5 mr-3" />
+        </Button>
+      );
     },
   },
 ];
