@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     //const session = await getSession({ req });
 
-    if (!session || session?.user.role !== "ADMIN") {
+    if (!session || session?.user?.role !== "ADMIN") {
       // Si l'utilisateur n'est pas connecté ou n'est pas un ADMIN
       return res.status(403).json({ error: "Accès interdit. Vous devez être un administrateur." });
     }
