@@ -62,7 +62,9 @@ export function DataTable<TData, TValue>({
     setTableData(data);
   }, [data]);
 
-  const columns: ColumnDef<User>[] = [
+  // Omit<User, "id" | "password" | "createdAt" | "updatedAt">
+
+  const columns: ColumnDef<TData>[] = [
     {
       accessorKey: "name",
       header: "Name",
