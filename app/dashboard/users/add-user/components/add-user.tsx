@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Utilisation de `next/navigation`
+import { Role } from "@prisma/client";
 
 // interface AddUserProps {
 //   formData: {
@@ -19,11 +20,15 @@ import { useRouter } from "next/navigation"; // Utilisation de `next/navigation`
 
 const AddUser = () => {
   const [formData, setFormData] = useState({
+    //    id: "",
     name: "",
     email: "",
     password: "",
-    role: "USER",
+    role: Role.USER,
+    // createdAt: new Date(),
+    // updatedAt: new Date(),
   });
+
   const [message, setMessage] = useState("");
   const { data: session, status } = useSession(); // Récupère la session de l'utilisateur
   const router = useRouter(); // Initialisez le hook pour naviguer
@@ -57,25 +62,62 @@ const AddUser = () => {
         "Vous devez être un administrateur pour ajouter un utilisateur."
       );
     }
-    //console.log(formData);
+    console.log(formData);
     //router.push("/dashboard/users");
     try {
-      const response = await fetch("/api/users/add", {
+      const response = await fetch("/api/users/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
-        setMessage("Utilisateur ajouté avec succès !");
-        setFormData({ name: "", email: "", password: "", role: "" });
+        console.log("Nouveau utilisateur créer");
+        // Mettre à jour les données locales
+        //const updatedData = tableData.filter((user) => user.email !== email);
+        //setTableData(updatedData);
+        //onDataChange(updatedData);
+        //router.refresh(); // Rafraîchir la page pour obtenir les nouvelles données
+        //setMessage("Utilisateur ajouté avec succès !");
+        //setFormData({ name: "", email: "", password: "", role: Role.USER });
         // Rediriger après le succès
+        setMessage("Utilisateur ajouté avec succès !");
+        setFormData({ name: "", email: "", password: "", role: Role.USER });
         router.push("/dashboard/users");
       } else {
         setMessage("Erreur lors de l'ajout de l'utilisateur.");
+        //setMessage("Erreur lors de l'ajout de l'utilisateur.");
       }
+
+      // const newUser = await addNewUser(formData);
+
+      // if (newUser) {
+      //   // Si l'utilisateur a été ajouté avec succès
+      //   setMessage("Utilisateur ajouté avec succès !");
+      //   setFormData({ name: "", email: "", password: "", role: Role.USER });
+
+      //   // Redirection après le succès
+      //   router.push("/dashboard/users");
+      // } else {
+      //   // Si l'ajout échoue sans erreur explicite
+      //   setMessage("Erreur lors de l'ajout de l'utilisateur.");
+      // }
+      // const response = await fetch("/api/users/create", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
+      // if (response.ok) {
+      //   setMessage("Utilisateur ajouté avec succès !");
+      //   setFormData({ name: "", email: "", password: "", role: Role.USER });
+      //   // Rediriger après le succès
+      //   router.push("/dashboard/users");
+      // } else {
+      //   setMessage("Erreur lors de l'ajout de l'utilisateur.");
+      // }
     } catch (error) {
       console.error("Erreur:", error);
       setMessage("Erreur réseau.");

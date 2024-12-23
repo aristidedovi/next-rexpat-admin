@@ -1,0 +1,149 @@
+// import { NextApiRequest, NextApiResponse } from 'next';
+// //import handler from '@/pages/api/your-api-route';
+// import { PrismaClient } from '@prisma/client';
+// import { hash } from 'bcrypt';
+// import { getServerSession } from 'next-auth/next';
+// import handler from '@/pages/api/users/create';
+
+// // Mock external dependencies
+// jest.mock('@prisma/client', () => ({
+//   PrismaClient: jest.fn(() => ({
+//     user: {
+//       create: jest.fn(),
+//     },
+//   })),
+// }));
+
+// jest.mock('bcrypt', () => ({
+//   hash: jest.fn(),
+// }));
+
+// jest.mock('next-auth', () => ({
+//   getServerSession: jest.fn(),
+// }));
+
+// describe('User Creation API', () => {
+//   let mockReq: Partial<NextApiRequest>;
+//   let mockRes: Partial<NextApiResponse>;
+//   let mockJson: jest.Mock;
+//   let mockStatus: jest.Mock;
+//   let mockPrisma: any;
+
+//   beforeEach(() => {
+//     // Reset all mocks before each test
+//     jest.clearAllMocks();
+
+//     // Mock response methods
+//     mockJson = jest.fn();
+//     mockStatus = jest.fn(() => ({ json: mockJson }));
+    
+//     mockRes = {
+//       status: mockStatus,
+//     };
+
+//     // Default request object
+//     mockReq = {
+//       method: 'POST',
+//       body: {
+//         name: 'Test User',
+//         email: 'test@example.com',
+//         password: 'password123',
+//         role: 'USER',
+//       },
+//     };
+
+//     // Mock PrismaClient instance
+//     mockPrisma = new PrismaClient();
+//   });
+
+//   it('should return 405 for non-POST requests', async () => {
+//     mockReq.method = 'GET';
+//     await handler(mockReq as NextApiRequest, mockRes as NextApiResponse);
+    
+//     expect(mockStatus).toHaveBeenCalledWith(405);
+//     expect(mockJson).toHaveBeenCalledWith({ error: 'Méthode non autorisée' });
+//   });
+
+//   it('should return 401 when no session exists', async () => {
+//     (getServerSession as jest.Mock).mockResolvedValueOnce(null);
+
+//     await handler(mockReq as NextApiRequest, mockRes as NextApiResponse);
+
+//     expect(mockStatus).toHaveBeenCalledWith(401);
+//     expect(mockJson).toHaveBeenCalledWith({ 
+//       error: 'Non autorisé. Veuillez vous connecter.' 
+//     });
+//   });
+
+//   it('should return 403 when user is not an admin', async () => {
+//     (getServerSession as jest.Mock).mockResolvedValueOnce({
+//       user: { role: 'USER' }
+//     });
+
+//     await handler(mockReq as NextApiRequest, mockRes as NextApiResponse);
+
+//     expect(mockStatus).toHaveBeenCalledWith(403);
+//     expect(mockJson).toHaveBeenCalledWith({ 
+//       error: 'Accès interdit. Vous devez être un administrateur.' 
+//     });
+//   });
+
+//   it('should successfully create a new user when admin is authenticated', async () => {
+//     // Mock successful admin session
+//     (getServerSession as jest.Mock).mockResolvedValueOnce({
+//       user: { role: 'ADMIN' }
+//     });
+
+//     // Mock password hashing
+//     (hash as jest.Mock).mockResolvedValueOnce('hashedPassword123');
+
+//     // Mock successful user creation
+//     const mockCreatedUser = {
+//       id: 1,
+//       name: 'Test User',
+//       email: 'test@example.com',
+//       role: 'USER',
+//     };
+//     mockPrisma.user.create.mockResolvedValueOnce(mockCreatedUser);
+
+//     await handler(mockReq as NextApiRequest, mockRes as NextApiResponse);
+
+//     expect(hash).toHaveBeenCalledWith('password123', 12);
+//     expect(mockPrisma.user.create).toHaveBeenCalledWith({
+//       data: {
+//         name: 'Test User',
+//         email: 'test@example.com',
+//         password: 'hashedPassword123',
+//         role: 'USER',
+//       },
+//     });
+//     expect(mockStatus).toHaveBeenCalledWith(201);
+//     expect(mockJson).toHaveBeenCalledWith({ user: mockCreatedUser });
+//   });
+
+//   it('should handle server errors during user creation', async () => {
+//     // Mock admin session
+//     (getServerSession as jest.Mock).mockResolvedValueOnce({
+//       user: { role: 'ADMIN' }
+//     });
+
+//     // Mock password hashing
+//     (hash as jest.Mock).mockResolvedValueOnce('hashedPassword123');
+
+//     // Mock database error
+//     const mockError = new Error('Database error');
+//     mockPrisma.user.create.mockRejectedValueOnce(mockError);
+
+//     // Mock console.error to prevent actual console output during tests
+//     const mockConsoleError = jest.spyOn(console, 'error').mockImplementation();
+
+//     await handler(mockReq as NextApiRequest, mockRes as NextApiResponse);
+
+//     expect(mockStatus).toHaveBeenCalledWith(500);
+//     expect(mockJson).toHaveBeenCalledWith({ error: 'Erreur serveur' });
+//     expect(mockConsoleError).toHaveBeenCalled();
+
+//     // Restore console.error
+//     mockConsoleError.mockRestore();
+//   });
+// });

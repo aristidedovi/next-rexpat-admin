@@ -1,14 +1,46 @@
-//import { DataTable } from "./components/data-table";
-import { columns } from "./components/columns";
-import { getUsers } from "@/lib/api/users";
-import { DataTable } from "./data-table";
+"use client";
 
-export default async function UsersPage() {
-  const users = await getUsers();
+import { DataTable } from "./data-table";
+import { User } from "@prisma/client";
+import { useEffect, useState } from "react";
+
+export default function UsersPage() {
+  const [users, setUsers] = useState<
+    Omit<User, "id" | "password" | "createdAt" | "updatedAt">[]
+  >([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleDataChange = (
+    newData: Omit<User, "id" | "password" | "createdAt" | "updatedAt">[]
+  ) => {
+    setUsers(newData);
+  };
+
+  const getAllUsers = async () => {
+    try {
+      const response = await fetch("/api/users/list");
+      if (response.ok) {
+        const data = await response.json();
+        setUsers(data.users);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={users} />
+      <DataTable handleDataChange={handleDataChange} data={users} />
     </div>
   );
 }
