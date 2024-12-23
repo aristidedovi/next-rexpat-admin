@@ -42,10 +42,12 @@ import { User } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { Trash2 } from "lucide-react";
 
+type UserData = Omit<User, "id" | "password" | "createdAt" | "updatedAt">;
+
 interface DataTableProps<TData, TValue> {
   //columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  handleDataChange: (newData: TData[]) => void;
+  data: UserData[];
+  handleDataChange: (newData: UserData[]) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -55,7 +57,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [tableData, setTableData] = useState<TData[]>(data);
+  const [tableData, setTableData] = useState<UserData[]>(data);
   const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ export function DataTable<TData, TValue>({
 
   // Omit<User, "id" | "password" | "createdAt" | "updatedAt">
 
-  const columns: ColumnDef<TData>[] = [
+  const columns: ColumnDef<UserData>[] = [
     {
       accessorKey: "name",
       header: "Name",
