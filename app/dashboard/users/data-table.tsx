@@ -108,7 +108,7 @@ export function DataTable<TData, TValue>({
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Confirmer la suppression</AlertDialogTitle>
+                <AlertDialogTitle>Confirmer la suppression!</AlertDialogTitle>
                 <AlertDialogDescription>
                   Êtes-vous sûr de vouloir supprimer l'utilisateur{" "}
                   <b>{userToDelete}</b>? Cette action est irréversible.
