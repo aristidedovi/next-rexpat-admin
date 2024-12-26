@@ -127,6 +127,25 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CandidatScalarFieldEnum = {
+  id: 'id',
+  nom: 'nom',
+  prenom: 'prenom',
+  age: 'age',
+  genre: 'genre',
+  situationMatrimoniale: 'situationMatrimoniale',
+  adresse: 'adresse',
+  numeroTelephone: 'numeroTelephone',
+  avecSansEnfant: 'avecSansEnfant',
+  typeService: 'typeService',
+  zonePreference: 'zonePreference',
+  rayonAction: 'rayonAction',
+  frequencePrestation: 'frequencePrestation',
+  frequenceDescente: 'frequenceDescente',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -147,7 +166,8 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Candidat: 'Candidat'
 };
 
 /**

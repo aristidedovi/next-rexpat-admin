@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
+  //output   = "./generated/client"
 }
 
 datasource db {
@@ -22,4 +22,23 @@ model User {
 enum Role {
   ADMIN
   USER
+}
+
+model Candidat {
+  id                    String   @id @default(cuid())
+  nom                   String
+  prenom                String
+  age                   Int
+  genre                 String
+  situationMatrimoniale String
+  adresse               String
+  numeroTelephone       String
+  avecSansEnfant        String
+  typeService           String
+  zonePreference        String
+  rayonAction           String
+  frequencePrestation   String
+  frequenceDescente     String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }

@@ -20,6 +20,11 @@ const routes = [
     href: "/dashboard/users",
   },
   {
+    label: "Candidats",
+    icon: Users,
+    href: "/dashboard/candidat",
+  },
+  {
     label: "Settings",
     icon: Settings,
     href: "/dashboard/settings",

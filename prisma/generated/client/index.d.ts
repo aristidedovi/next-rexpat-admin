@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Candidat
+ * 
+ */
+export type Candidat = $Result.DefaultSelection<Prisma.$CandidatPayload>
 
 /**
  * Enums
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.candidat`: Exposes CRUD operations for the **Candidat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Candidats
+    * const candidats = await prisma.candidat.findMany()
+    * ```
+    */
+  get candidat(): Prisma.CandidatDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -608,7 +623,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Candidat: 'Candidat'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -624,7 +640,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "candidat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -695,6 +711,76 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Candidat: {
+        payload: Prisma.$CandidatPayload<ExtArgs>
+        fields: Prisma.CandidatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CandidatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CandidatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          findFirst: {
+            args: Prisma.CandidatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CandidatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          findMany: {
+            args: Prisma.CandidatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>[]
+          }
+          create: {
+            args: Prisma.CandidatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          createMany: {
+            args: Prisma.CandidatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CandidatCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>[]
+          }
+          delete: {
+            args: Prisma.CandidatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          update: {
+            args: Prisma.CandidatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          deleteMany: {
+            args: Prisma.CandidatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CandidatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CandidatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatPayload>
+          }
+          aggregate: {
+            args: Prisma.CandidatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCandidat>
+          }
+          groupBy: {
+            args: Prisma.CandidatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CandidatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CandidatCountArgs<ExtArgs>
+            result: $Utils.Optional<CandidatCountAggregateOutputType> | number
           }
         }
       }
@@ -1762,6 +1848,1050 @@ export namespace Prisma {
 
 
   /**
+   * Model Candidat
+   */
+
+  export type AggregateCandidat = {
+    _count: CandidatCountAggregateOutputType | null
+    _avg: CandidatAvgAggregateOutputType | null
+    _sum: CandidatSumAggregateOutputType | null
+    _min: CandidatMinAggregateOutputType | null
+    _max: CandidatMaxAggregateOutputType | null
+  }
+
+  export type CandidatAvgAggregateOutputType = {
+    age: number | null
+  }
+
+  export type CandidatSumAggregateOutputType = {
+    age: number | null
+  }
+
+  export type CandidatMinAggregateOutputType = {
+    id: string | null
+    nom: string | null
+    prenom: string | null
+    age: number | null
+    genre: string | null
+    situationMatrimoniale: string | null
+    adresse: string | null
+    numeroTelephone: string | null
+    avecSansEnfant: string | null
+    typeService: string | null
+    zonePreference: string | null
+    rayonAction: string | null
+    frequencePrestation: string | null
+    frequenceDescente: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CandidatMaxAggregateOutputType = {
+    id: string | null
+    nom: string | null
+    prenom: string | null
+    age: number | null
+    genre: string | null
+    situationMatrimoniale: string | null
+    adresse: string | null
+    numeroTelephone: string | null
+    avecSansEnfant: string | null
+    typeService: string | null
+    zonePreference: string | null
+    rayonAction: string | null
+    frequencePrestation: string | null
+    frequenceDescente: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CandidatCountAggregateOutputType = {
+    id: number
+    nom: number
+    prenom: number
+    age: number
+    genre: number
+    situationMatrimoniale: number
+    adresse: number
+    numeroTelephone: number
+    avecSansEnfant: number
+    typeService: number
+    zonePreference: number
+    rayonAction: number
+    frequencePrestation: number
+    frequenceDescente: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CandidatAvgAggregateInputType = {
+    age?: true
+  }
+
+  export type CandidatSumAggregateInputType = {
+    age?: true
+  }
+
+  export type CandidatMinAggregateInputType = {
+    id?: true
+    nom?: true
+    prenom?: true
+    age?: true
+    genre?: true
+    situationMatrimoniale?: true
+    adresse?: true
+    numeroTelephone?: true
+    avecSansEnfant?: true
+    typeService?: true
+    zonePreference?: true
+    rayonAction?: true
+    frequencePrestation?: true
+    frequenceDescente?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CandidatMaxAggregateInputType = {
+    id?: true
+    nom?: true
+    prenom?: true
+    age?: true
+    genre?: true
+    situationMatrimoniale?: true
+    adresse?: true
+    numeroTelephone?: true
+    avecSansEnfant?: true
+    typeService?: true
+    zonePreference?: true
+    rayonAction?: true
+    frequencePrestation?: true
+    frequenceDescente?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CandidatCountAggregateInputType = {
+    id?: true
+    nom?: true
+    prenom?: true
+    age?: true
+    genre?: true
+    situationMatrimoniale?: true
+    adresse?: true
+    numeroTelephone?: true
+    avecSansEnfant?: true
+    typeService?: true
+    zonePreference?: true
+    rayonAction?: true
+    frequencePrestation?: true
+    frequenceDescente?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CandidatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Candidat to aggregate.
+     */
+    where?: CandidatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidats to fetch.
+     */
+    orderBy?: CandidatOrderByWithRelationInput | CandidatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CandidatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Candidats
+    **/
+    _count?: true | CandidatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CandidatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CandidatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CandidatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CandidatMaxAggregateInputType
+  }
+
+  export type GetCandidatAggregateType<T extends CandidatAggregateArgs> = {
+        [P in keyof T & keyof AggregateCandidat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCandidat[P]>
+      : GetScalarType<T[P], AggregateCandidat[P]>
+  }
+
+
+
+
+  export type CandidatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidatWhereInput
+    orderBy?: CandidatOrderByWithAggregationInput | CandidatOrderByWithAggregationInput[]
+    by: CandidatScalarFieldEnum[] | CandidatScalarFieldEnum
+    having?: CandidatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CandidatCountAggregateInputType | true
+    _avg?: CandidatAvgAggregateInputType
+    _sum?: CandidatSumAggregateInputType
+    _min?: CandidatMinAggregateInputType
+    _max?: CandidatMaxAggregateInputType
+  }
+
+  export type CandidatGroupByOutputType = {
+    id: string
+    nom: string
+    prenom: string
+    age: number
+    genre: string
+    situationMatrimoniale: string
+    adresse: string
+    numeroTelephone: string
+    avecSansEnfant: string
+    typeService: string
+    zonePreference: string
+    rayonAction: string
+    frequencePrestation: string
+    frequenceDescente: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CandidatCountAggregateOutputType | null
+    _avg: CandidatAvgAggregateOutputType | null
+    _sum: CandidatSumAggregateOutputType | null
+    _min: CandidatMinAggregateOutputType | null
+    _max: CandidatMaxAggregateOutputType | null
+  }
+
+  type GetCandidatGroupByPayload<T extends CandidatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CandidatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CandidatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CandidatGroupByOutputType[P]>
+            : GetScalarType<T[P], CandidatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CandidatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nom?: boolean
+    prenom?: boolean
+    age?: boolean
+    genre?: boolean
+    situationMatrimoniale?: boolean
+    adresse?: boolean
+    numeroTelephone?: boolean
+    avecSansEnfant?: boolean
+    typeService?: boolean
+    zonePreference?: boolean
+    rayonAction?: boolean
+    frequencePrestation?: boolean
+    frequenceDescente?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["candidat"]>
+
+  export type CandidatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nom?: boolean
+    prenom?: boolean
+    age?: boolean
+    genre?: boolean
+    situationMatrimoniale?: boolean
+    adresse?: boolean
+    numeroTelephone?: boolean
+    avecSansEnfant?: boolean
+    typeService?: boolean
+    zonePreference?: boolean
+    rayonAction?: boolean
+    frequencePrestation?: boolean
+    frequenceDescente?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["candidat"]>
+
+  export type CandidatSelectScalar = {
+    id?: boolean
+    nom?: boolean
+    prenom?: boolean
+    age?: boolean
+    genre?: boolean
+    situationMatrimoniale?: boolean
+    adresse?: boolean
+    numeroTelephone?: boolean
+    avecSansEnfant?: boolean
+    typeService?: boolean
+    zonePreference?: boolean
+    rayonAction?: boolean
+    frequencePrestation?: boolean
+    frequenceDescente?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $CandidatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Candidat"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nom: string
+      prenom: string
+      age: number
+      genre: string
+      situationMatrimoniale: string
+      adresse: string
+      numeroTelephone: string
+      avecSansEnfant: string
+      typeService: string
+      zonePreference: string
+      rayonAction: string
+      frequencePrestation: string
+      frequenceDescente: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["candidat"]>
+    composites: {}
+  }
+
+  type CandidatGetPayload<S extends boolean | null | undefined | CandidatDefaultArgs> = $Result.GetResult<Prisma.$CandidatPayload, S>
+
+  type CandidatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CandidatFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CandidatCountAggregateInputType | true
+    }
+
+  export interface CandidatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Candidat'], meta: { name: 'Candidat' } }
+    /**
+     * Find zero or one Candidat that matches the filter.
+     * @param {CandidatFindUniqueArgs} args - Arguments to find a Candidat
+     * @example
+     * // Get one Candidat
+     * const candidat = await prisma.candidat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CandidatFindUniqueArgs>(args: SelectSubset<T, CandidatFindUniqueArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Candidat that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CandidatFindUniqueOrThrowArgs} args - Arguments to find a Candidat
+     * @example
+     * // Get one Candidat
+     * const candidat = await prisma.candidat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CandidatFindUniqueOrThrowArgs>(args: SelectSubset<T, CandidatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Candidat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatFindFirstArgs} args - Arguments to find a Candidat
+     * @example
+     * // Get one Candidat
+     * const candidat = await prisma.candidat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CandidatFindFirstArgs>(args?: SelectSubset<T, CandidatFindFirstArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Candidat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatFindFirstOrThrowArgs} args - Arguments to find a Candidat
+     * @example
+     * // Get one Candidat
+     * const candidat = await prisma.candidat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CandidatFindFirstOrThrowArgs>(args?: SelectSubset<T, CandidatFindFirstOrThrowArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Candidats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Candidats
+     * const candidats = await prisma.candidat.findMany()
+     * 
+     * // Get first 10 Candidats
+     * const candidats = await prisma.candidat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const candidatWithIdOnly = await prisma.candidat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CandidatFindManyArgs>(args?: SelectSubset<T, CandidatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Candidat.
+     * @param {CandidatCreateArgs} args - Arguments to create a Candidat.
+     * @example
+     * // Create one Candidat
+     * const Candidat = await prisma.candidat.create({
+     *   data: {
+     *     // ... data to create a Candidat
+     *   }
+     * })
+     * 
+     */
+    create<T extends CandidatCreateArgs>(args: SelectSubset<T, CandidatCreateArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Candidats.
+     * @param {CandidatCreateManyArgs} args - Arguments to create many Candidats.
+     * @example
+     * // Create many Candidats
+     * const candidat = await prisma.candidat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CandidatCreateManyArgs>(args?: SelectSubset<T, CandidatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Candidats and returns the data saved in the database.
+     * @param {CandidatCreateManyAndReturnArgs} args - Arguments to create many Candidats.
+     * @example
+     * // Create many Candidats
+     * const candidat = await prisma.candidat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Candidats and only return the `id`
+     * const candidatWithIdOnly = await prisma.candidat.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CandidatCreateManyAndReturnArgs>(args?: SelectSubset<T, CandidatCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Candidat.
+     * @param {CandidatDeleteArgs} args - Arguments to delete one Candidat.
+     * @example
+     * // Delete one Candidat
+     * const Candidat = await prisma.candidat.delete({
+     *   where: {
+     *     // ... filter to delete one Candidat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CandidatDeleteArgs>(args: SelectSubset<T, CandidatDeleteArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Candidat.
+     * @param {CandidatUpdateArgs} args - Arguments to update one Candidat.
+     * @example
+     * // Update one Candidat
+     * const candidat = await prisma.candidat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CandidatUpdateArgs>(args: SelectSubset<T, CandidatUpdateArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Candidats.
+     * @param {CandidatDeleteManyArgs} args - Arguments to filter Candidats to delete.
+     * @example
+     * // Delete a few Candidats
+     * const { count } = await prisma.candidat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CandidatDeleteManyArgs>(args?: SelectSubset<T, CandidatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Candidats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Candidats
+     * const candidat = await prisma.candidat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CandidatUpdateManyArgs>(args: SelectSubset<T, CandidatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Candidat.
+     * @param {CandidatUpsertArgs} args - Arguments to update or create a Candidat.
+     * @example
+     * // Update or create a Candidat
+     * const candidat = await prisma.candidat.upsert({
+     *   create: {
+     *     // ... data to create a Candidat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Candidat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CandidatUpsertArgs>(args: SelectSubset<T, CandidatUpsertArgs<ExtArgs>>): Prisma__CandidatClient<$Result.GetResult<Prisma.$CandidatPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Candidats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatCountArgs} args - Arguments to filter Candidats to count.
+     * @example
+     * // Count the number of Candidats
+     * const count = await prisma.candidat.count({
+     *   where: {
+     *     // ... the filter for the Candidats we want to count
+     *   }
+     * })
+    **/
+    count<T extends CandidatCountArgs>(
+      args?: Subset<T, CandidatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CandidatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Candidat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CandidatAggregateArgs>(args: Subset<T, CandidatAggregateArgs>): Prisma.PrismaPromise<GetCandidatAggregateType<T>>
+
+    /**
+     * Group by Candidat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CandidatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CandidatGroupByArgs['orderBy'] }
+        : { orderBy?: CandidatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CandidatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCandidatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Candidat model
+   */
+  readonly fields: CandidatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Candidat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CandidatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Candidat model
+   */ 
+  interface CandidatFieldRefs {
+    readonly id: FieldRef<"Candidat", 'String'>
+    readonly nom: FieldRef<"Candidat", 'String'>
+    readonly prenom: FieldRef<"Candidat", 'String'>
+    readonly age: FieldRef<"Candidat", 'Int'>
+    readonly genre: FieldRef<"Candidat", 'String'>
+    readonly situationMatrimoniale: FieldRef<"Candidat", 'String'>
+    readonly adresse: FieldRef<"Candidat", 'String'>
+    readonly numeroTelephone: FieldRef<"Candidat", 'String'>
+    readonly avecSansEnfant: FieldRef<"Candidat", 'String'>
+    readonly typeService: FieldRef<"Candidat", 'String'>
+    readonly zonePreference: FieldRef<"Candidat", 'String'>
+    readonly rayonAction: FieldRef<"Candidat", 'String'>
+    readonly frequencePrestation: FieldRef<"Candidat", 'String'>
+    readonly frequenceDescente: FieldRef<"Candidat", 'String'>
+    readonly createdAt: FieldRef<"Candidat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Candidat", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Candidat findUnique
+   */
+  export type CandidatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter, which Candidat to fetch.
+     */
+    where: CandidatWhereUniqueInput
+  }
+
+  /**
+   * Candidat findUniqueOrThrow
+   */
+  export type CandidatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter, which Candidat to fetch.
+     */
+    where: CandidatWhereUniqueInput
+  }
+
+  /**
+   * Candidat findFirst
+   */
+  export type CandidatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter, which Candidat to fetch.
+     */
+    where?: CandidatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidats to fetch.
+     */
+    orderBy?: CandidatOrderByWithRelationInput | CandidatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Candidats.
+     */
+    cursor?: CandidatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Candidats.
+     */
+    distinct?: CandidatScalarFieldEnum | CandidatScalarFieldEnum[]
+  }
+
+  /**
+   * Candidat findFirstOrThrow
+   */
+  export type CandidatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter, which Candidat to fetch.
+     */
+    where?: CandidatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidats to fetch.
+     */
+    orderBy?: CandidatOrderByWithRelationInput | CandidatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Candidats.
+     */
+    cursor?: CandidatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Candidats.
+     */
+    distinct?: CandidatScalarFieldEnum | CandidatScalarFieldEnum[]
+  }
+
+  /**
+   * Candidat findMany
+   */
+  export type CandidatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter, which Candidats to fetch.
+     */
+    where?: CandidatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidats to fetch.
+     */
+    orderBy?: CandidatOrderByWithRelationInput | CandidatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Candidats.
+     */
+    cursor?: CandidatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidats.
+     */
+    skip?: number
+    distinct?: CandidatScalarFieldEnum | CandidatScalarFieldEnum[]
+  }
+
+  /**
+   * Candidat create
+   */
+  export type CandidatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Candidat.
+     */
+    data: XOR<CandidatCreateInput, CandidatUncheckedCreateInput>
+  }
+
+  /**
+   * Candidat createMany
+   */
+  export type CandidatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Candidats.
+     */
+    data: CandidatCreateManyInput | CandidatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Candidat createManyAndReturn
+   */
+  export type CandidatCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Candidats.
+     */
+    data: CandidatCreateManyInput | CandidatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Candidat update
+   */
+  export type CandidatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Candidat.
+     */
+    data: XOR<CandidatUpdateInput, CandidatUncheckedUpdateInput>
+    /**
+     * Choose, which Candidat to update.
+     */
+    where: CandidatWhereUniqueInput
+  }
+
+  /**
+   * Candidat updateMany
+   */
+  export type CandidatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Candidats.
+     */
+    data: XOR<CandidatUpdateManyMutationInput, CandidatUncheckedUpdateManyInput>
+    /**
+     * Filter which Candidats to update
+     */
+    where?: CandidatWhereInput
+  }
+
+  /**
+   * Candidat upsert
+   */
+  export type CandidatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Candidat to update in case it exists.
+     */
+    where: CandidatWhereUniqueInput
+    /**
+     * In case the Candidat found by the `where` argument doesn't exist, create a new Candidat with this data.
+     */
+    create: XOR<CandidatCreateInput, CandidatUncheckedCreateInput>
+    /**
+     * In case the Candidat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CandidatUpdateInput, CandidatUncheckedUpdateInput>
+  }
+
+  /**
+   * Candidat delete
+   */
+  export type CandidatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+    /**
+     * Filter which Candidat to delete.
+     */
+    where: CandidatWhereUniqueInput
+  }
+
+  /**
+   * Candidat deleteMany
+   */
+  export type CandidatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Candidats to delete
+     */
+    where?: CandidatWhereInput
+  }
+
+  /**
+   * Candidat without action
+   */
+  export type CandidatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidat
+     */
+    select?: CandidatSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1786,6 +2916,28 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const CandidatScalarFieldEnum: {
+    id: 'id',
+    nom: 'nom',
+    prenom: 'prenom',
+    age: 'age',
+    genre: 'genre',
+    situationMatrimoniale: 'situationMatrimoniale',
+    adresse: 'adresse',
+    numeroTelephone: 'numeroTelephone',
+    avecSansEnfant: 'avecSansEnfant',
+    typeService: 'typeService',
+    zonePreference: 'zonePreference',
+    rayonAction: 'rayonAction',
+    frequencePrestation: 'frequencePrestation',
+    frequenceDescente: 'frequenceDescente',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CandidatScalarFieldEnum = (typeof CandidatScalarFieldEnum)[keyof typeof CandidatScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1871,6 +3023,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -1936,6 +3102,115 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type CandidatWhereInput = {
+    AND?: CandidatWhereInput | CandidatWhereInput[]
+    OR?: CandidatWhereInput[]
+    NOT?: CandidatWhereInput | CandidatWhereInput[]
+    id?: StringFilter<"Candidat"> | string
+    nom?: StringFilter<"Candidat"> | string
+    prenom?: StringFilter<"Candidat"> | string
+    age?: IntFilter<"Candidat"> | number
+    genre?: StringFilter<"Candidat"> | string
+    situationMatrimoniale?: StringFilter<"Candidat"> | string
+    adresse?: StringFilter<"Candidat"> | string
+    numeroTelephone?: StringFilter<"Candidat"> | string
+    avecSansEnfant?: StringFilter<"Candidat"> | string
+    typeService?: StringFilter<"Candidat"> | string
+    zonePreference?: StringFilter<"Candidat"> | string
+    rayonAction?: StringFilter<"Candidat"> | string
+    frequencePrestation?: StringFilter<"Candidat"> | string
+    frequenceDescente?: StringFilter<"Candidat"> | string
+    createdAt?: DateTimeFilter<"Candidat"> | Date | string
+    updatedAt?: DateTimeFilter<"Candidat"> | Date | string
+  }
+
+  export type CandidatOrderByWithRelationInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    prenom?: SortOrder
+    age?: SortOrder
+    genre?: SortOrder
+    situationMatrimoniale?: SortOrder
+    adresse?: SortOrder
+    numeroTelephone?: SortOrder
+    avecSansEnfant?: SortOrder
+    typeService?: SortOrder
+    zonePreference?: SortOrder
+    rayonAction?: SortOrder
+    frequencePrestation?: SortOrder
+    frequenceDescente?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CandidatWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CandidatWhereInput | CandidatWhereInput[]
+    OR?: CandidatWhereInput[]
+    NOT?: CandidatWhereInput | CandidatWhereInput[]
+    nom?: StringFilter<"Candidat"> | string
+    prenom?: StringFilter<"Candidat"> | string
+    age?: IntFilter<"Candidat"> | number
+    genre?: StringFilter<"Candidat"> | string
+    situationMatrimoniale?: StringFilter<"Candidat"> | string
+    adresse?: StringFilter<"Candidat"> | string
+    numeroTelephone?: StringFilter<"Candidat"> | string
+    avecSansEnfant?: StringFilter<"Candidat"> | string
+    typeService?: StringFilter<"Candidat"> | string
+    zonePreference?: StringFilter<"Candidat"> | string
+    rayonAction?: StringFilter<"Candidat"> | string
+    frequencePrestation?: StringFilter<"Candidat"> | string
+    frequenceDescente?: StringFilter<"Candidat"> | string
+    createdAt?: DateTimeFilter<"Candidat"> | Date | string
+    updatedAt?: DateTimeFilter<"Candidat"> | Date | string
+  }, "id">
+
+  export type CandidatOrderByWithAggregationInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    prenom?: SortOrder
+    age?: SortOrder
+    genre?: SortOrder
+    situationMatrimoniale?: SortOrder
+    adresse?: SortOrder
+    numeroTelephone?: SortOrder
+    avecSansEnfant?: SortOrder
+    typeService?: SortOrder
+    zonePreference?: SortOrder
+    rayonAction?: SortOrder
+    frequencePrestation?: SortOrder
+    frequenceDescente?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CandidatCountOrderByAggregateInput
+    _avg?: CandidatAvgOrderByAggregateInput
+    _max?: CandidatMaxOrderByAggregateInput
+    _min?: CandidatMinOrderByAggregateInput
+    _sum?: CandidatSumOrderByAggregateInput
+  }
+
+  export type CandidatScalarWhereWithAggregatesInput = {
+    AND?: CandidatScalarWhereWithAggregatesInput | CandidatScalarWhereWithAggregatesInput[]
+    OR?: CandidatScalarWhereWithAggregatesInput[]
+    NOT?: CandidatScalarWhereWithAggregatesInput | CandidatScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Candidat"> | string
+    nom?: StringWithAggregatesFilter<"Candidat"> | string
+    prenom?: StringWithAggregatesFilter<"Candidat"> | string
+    age?: IntWithAggregatesFilter<"Candidat"> | number
+    genre?: StringWithAggregatesFilter<"Candidat"> | string
+    situationMatrimoniale?: StringWithAggregatesFilter<"Candidat"> | string
+    adresse?: StringWithAggregatesFilter<"Candidat"> | string
+    numeroTelephone?: StringWithAggregatesFilter<"Candidat"> | string
+    avecSansEnfant?: StringWithAggregatesFilter<"Candidat"> | string
+    typeService?: StringWithAggregatesFilter<"Candidat"> | string
+    zonePreference?: StringWithAggregatesFilter<"Candidat"> | string
+    rayonAction?: StringWithAggregatesFilter<"Candidat"> | string
+    frequencePrestation?: StringWithAggregatesFilter<"Candidat"> | string
+    frequenceDescente?: StringWithAggregatesFilter<"Candidat"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Candidat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Candidat"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -2004,6 +3279,139 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidatCreateInput = {
+    id?: string
+    nom: string
+    prenom: string
+    age: number
+    genre: string
+    situationMatrimoniale: string
+    adresse: string
+    numeroTelephone: string
+    avecSansEnfant: string
+    typeService: string
+    zonePreference: string
+    rayonAction: string
+    frequencePrestation: string
+    frequenceDescente: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CandidatUncheckedCreateInput = {
+    id?: string
+    nom: string
+    prenom: string
+    age: number
+    genre: string
+    situationMatrimoniale: string
+    adresse: string
+    numeroTelephone: string
+    avecSansEnfant: string
+    typeService: string
+    zonePreference: string
+    rayonAction: string
+    frequencePrestation: string
+    frequenceDescente: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CandidatUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    prenom?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    genre?: StringFieldUpdateOperationsInput | string
+    situationMatrimoniale?: StringFieldUpdateOperationsInput | string
+    adresse?: StringFieldUpdateOperationsInput | string
+    numeroTelephone?: StringFieldUpdateOperationsInput | string
+    avecSansEnfant?: StringFieldUpdateOperationsInput | string
+    typeService?: StringFieldUpdateOperationsInput | string
+    zonePreference?: StringFieldUpdateOperationsInput | string
+    rayonAction?: StringFieldUpdateOperationsInput | string
+    frequencePrestation?: StringFieldUpdateOperationsInput | string
+    frequenceDescente?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidatUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    prenom?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    genre?: StringFieldUpdateOperationsInput | string
+    situationMatrimoniale?: StringFieldUpdateOperationsInput | string
+    adresse?: StringFieldUpdateOperationsInput | string
+    numeroTelephone?: StringFieldUpdateOperationsInput | string
+    avecSansEnfant?: StringFieldUpdateOperationsInput | string
+    typeService?: StringFieldUpdateOperationsInput | string
+    zonePreference?: StringFieldUpdateOperationsInput | string
+    rayonAction?: StringFieldUpdateOperationsInput | string
+    frequencePrestation?: StringFieldUpdateOperationsInput | string
+    frequenceDescente?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidatCreateManyInput = {
+    id?: string
+    nom: string
+    prenom: string
+    age: number
+    genre: string
+    situationMatrimoniale: string
+    adresse: string
+    numeroTelephone: string
+    avecSansEnfant: string
+    typeService: string
+    zonePreference: string
+    rayonAction: string
+    frequencePrestation: string
+    frequenceDescente: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CandidatUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    prenom?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    genre?: StringFieldUpdateOperationsInput | string
+    situationMatrimoniale?: StringFieldUpdateOperationsInput | string
+    adresse?: StringFieldUpdateOperationsInput | string
+    numeroTelephone?: StringFieldUpdateOperationsInput | string
+    avecSansEnfant?: StringFieldUpdateOperationsInput | string
+    typeService?: StringFieldUpdateOperationsInput | string
+    zonePreference?: StringFieldUpdateOperationsInput | string
+    rayonAction?: StringFieldUpdateOperationsInput | string
+    frequencePrestation?: StringFieldUpdateOperationsInput | string
+    frequenceDescente?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidatUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    prenom?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    genre?: StringFieldUpdateOperationsInput | string
+    situationMatrimoniale?: StringFieldUpdateOperationsInput | string
+    adresse?: StringFieldUpdateOperationsInput | string
+    numeroTelephone?: StringFieldUpdateOperationsInput | string
+    avecSansEnfant?: StringFieldUpdateOperationsInput | string
+    typeService?: StringFieldUpdateOperationsInput | string
+    zonePreference?: StringFieldUpdateOperationsInput | string
+    rayonAction?: StringFieldUpdateOperationsInput | string
+    frequencePrestation?: StringFieldUpdateOperationsInput | string
+    frequenceDescente?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2151,6 +3559,98 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type CandidatCountOrderByAggregateInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    prenom?: SortOrder
+    age?: SortOrder
+    genre?: SortOrder
+    situationMatrimoniale?: SortOrder
+    adresse?: SortOrder
+    numeroTelephone?: SortOrder
+    avecSansEnfant?: SortOrder
+    typeService?: SortOrder
+    zonePreference?: SortOrder
+    rayonAction?: SortOrder
+    frequencePrestation?: SortOrder
+    frequenceDescente?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CandidatAvgOrderByAggregateInput = {
+    age?: SortOrder
+  }
+
+  export type CandidatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    prenom?: SortOrder
+    age?: SortOrder
+    genre?: SortOrder
+    situationMatrimoniale?: SortOrder
+    adresse?: SortOrder
+    numeroTelephone?: SortOrder
+    avecSansEnfant?: SortOrder
+    typeService?: SortOrder
+    zonePreference?: SortOrder
+    rayonAction?: SortOrder
+    frequencePrestation?: SortOrder
+    frequenceDescente?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CandidatMinOrderByAggregateInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    prenom?: SortOrder
+    age?: SortOrder
+    genre?: SortOrder
+    situationMatrimoniale?: SortOrder
+    adresse?: SortOrder
+    numeroTelephone?: SortOrder
+    avecSansEnfant?: SortOrder
+    typeService?: SortOrder
+    zonePreference?: SortOrder
+    rayonAction?: SortOrder
+    frequencePrestation?: SortOrder
+    frequenceDescente?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CandidatSumOrderByAggregateInput = {
+    age?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2165,6 +3665,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2291,6 +3799,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
 
